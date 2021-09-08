@@ -1,0 +1,14 @@
+.DS_Store
+.cache
+.vscode
+.idea
+.expo
+.project
+.settings
+.history
+
+node_modules/
+
+npm-debug.*
+
+lib

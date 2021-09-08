@@ -6,7 +6,7 @@
  * @returns {boolean}
  * @private
  */
-import { FUNC_STR, REGEX } from "utilities/factories/smart-query/SmartQueryConstants";
+import { FUNC_STR, REGEX } from "./SmartQueryConstants";
 
 export function _isValidExpression(expression: string) {
     return (

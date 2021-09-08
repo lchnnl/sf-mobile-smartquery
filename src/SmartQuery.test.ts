@@ -1,5 +1,5 @@
-import { SmartQuery } from "utilities/factories/smart-query/SmartQuery";
-import { EXCEPTIONS } from "utilities/factories/smart-query/SmartQueryConstants";
+import { SmartQuery } from "./SmartQuery";
+import { EXCEPTIONS } from "./SmartQueryConstants";
 
 describe("QueryFactory", () => {
     describe("smart sql statement without condition", function () {

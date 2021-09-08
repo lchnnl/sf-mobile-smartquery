@@ -22,13 +22,13 @@ yarn add sf-mobile-smartquery
 ```typescript
 import {SmartQuery} from 'lchnnl/sf-mobile-smartquery'; 
 
-const q = new SmartQuery;
+const q = new SmartQuery();
 q.select('_soup');
 q.from('Account');
 q.run() // output: SELECT {Account:_soup} from {Account}
 
 // Chaining functions
-const q = new SmartQuery;
+const q = new SmartQuery();
 q.select('Id', 'Name')
 .from('Account')
 .where('Id', '=', `'001XXXXXXXXXXX'`)

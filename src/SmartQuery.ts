@@ -38,7 +38,7 @@ import {
 } from "./SmartQueryConstants";
 import { _isValidExpression, _composeColumns, _composeTable, _composeCondition } from "./SmaryQueryHelpers";
 
-        export class SmartQuery {
+export class SmartQuery {
     // Private properties
     private _table: string = "";
     private _columns: string[] = [];

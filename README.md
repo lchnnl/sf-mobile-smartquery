@@ -29,7 +29,7 @@ q.run() // output: SELECT {Account:_soup} from {Account}
 
 // Chaining functions
 const q = new SmartQuery();
-q.select('Id', 'Name')
+q.select(['Id', 'Name'])
 .from('Account')
 .where('Id', '=', `'001XXXXXXXXXXX'`)
 .run() // output: SELECT {Account:Id}, {Account:Name} FROM {Account} WHERE {Account:Id} = '001XXXXXXXXXXX'

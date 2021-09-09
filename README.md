@@ -23,7 +23,7 @@ yarn add sf-mobile-smartquery
 import {SmartQuery} from 'lchnnl/sf-mobile-smartquery'; 
 
 const q = new SmartQuery();
-q.select('_soup');
+q.select(['_soup']);
 q.from('Account');
 q.run() // output: SELECT {Account:_soup} from {Account}
 

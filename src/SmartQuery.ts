@@ -1,10 +1,10 @@
 /**
- * Ported from Cordova App.
  * Factory to generate smart queries used by smart store. Include validity checks of parameters.
  * For more complex queries, where calculations are involved do NOT usage this factory.
  *
  * Usage:
- * var q = QueryFactory.newInstance();  // to generate a new instance of the query factory
+ * import SmartQuery from 'sf-mobile-smartquery'
+ * const q = SmartQuery()  // to generate a new instance of the query factory
  * q.select([id, name]);
  * q.from(table)
  * q.where(field1,operator1,criteria1)
@@ -14,7 +14,7 @@
  * Generated query would look like:
  * "SELECT {table:id}, {table:name} FROM {table} WHERE {table:field1} operator1 criteria1 AND {table:field2} operator2 criteria2"
  *
- * var q = QueryFactory.newInstance();  // to generate a new instance of the query factory
+ * const q = SmartQuery();  // to generate a new instance of the query factory
  * q.select([id, name]);
  * q.from(table)
  * q.where(field1,operator1,criteria1)

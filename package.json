@@ -19,5 +19,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/lchnnl/sf-mobile-smartquery.git"
-  }
+  },
+  "keywords": ["Salesforce", "Mobile", "SDK", "SmartStore", "SmartSQL", "SQL Injection"]
 }

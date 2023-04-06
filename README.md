@@ -22,7 +22,7 @@ yarn add sf-mobile-smartquery
 
 ### Usage
 ```typescript
-import {SmartQuery} from 'sf-mobile-smartquery'; 
+import { SmartQuery } from 'sf-mobile-smartquery'; 
 
 // Regular usage
 const q = new SmartQuery();

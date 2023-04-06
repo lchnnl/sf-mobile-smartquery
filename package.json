@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "yarn tsc",
-    "prepare": "yarn build"
+    "prepare": "yarn build",
+    "test": "npx jest --verbose"
   },
   "author": "Loeng Chen",
   "license": "ISC",

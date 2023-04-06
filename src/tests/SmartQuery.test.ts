@@ -1,8 +1,8 @@
-import { SmartQuery } from "./SmartQuery";
-import { EXCEPTIONS } from "./SmartQueryConstants";
+import { SmartQuery } from "../SmartQuery";
+import { EXCEPTIONS } from "../SmartQueryConstants";
 
-describe("QueryFactory", () => {
-    describe("smart sql statement without condition", function () {
+describe("SmartQuery", () => {
+    describe("query statement without condition", function () {
         it("is correctly generated with one select field", function () {
             // GIVEN
             let q = new SmartQuery();
@@ -49,7 +49,7 @@ describe("QueryFactory", () => {
         });
     });
 
-    describe("smart sql statement with conditions", function () {
+    describe("query statement with conditions", function () {
         it("is correctly generated with one where condition", function () {
             // GIVEN
             let q = new SmartQuery();
@@ -85,7 +85,7 @@ describe("QueryFactory", () => {
         });
     });
 
-    describe("smart sql statement with grouped conditions", function () {
+    describe("query statement with grouped conditions", function () {
         it("is correctly generated with one grouped condition", function () {
             // GIVEN
             let q = new SmartQuery();
@@ -106,7 +106,7 @@ describe("QueryFactory", () => {
         });
     });
 
-    describe("smart sql statement with sql injection", function () {
+    describe("query statement with sql injection", function () {
         it("throws an error if sql is injected at FROM statement", function () {
             // GIVEN
             let q = new SmartQuery();

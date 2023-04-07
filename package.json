@@ -1,6 +1,6 @@
 {
   "name": "sf-mobile-smartquery",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Factory for generating Smart Queries for Salesforce Mobile SmartStore",
   "main": "index.js",
   "scripts": {

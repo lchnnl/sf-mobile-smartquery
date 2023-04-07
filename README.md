@@ -50,4 +50,4 @@ try {
 
 ```
 
-More examples can be found in the [test scripts](./src/SmartQuery.test.ts)
+More examples can be found in the [test scripts](./src/tests/SmartQuery.test.ts)

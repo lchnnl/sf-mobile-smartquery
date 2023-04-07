@@ -1,16 +1,5 @@
-// SQL Operators
-export const OPERATORS = {
-    AND: "AND",
-    OR: "OR",
-    IS: "IS",
-    IN: "IN",
-};
 
-// SQL Order By Directions
-export const DIRECTIONS = {
-    DESC: "DESC",
-    ASC: "ASC",
-};
+import { DIRECTIONS } from "./enums/directions.enum";
 
 // Regex to validate to validate inputs
 export const REGEX = {
@@ -23,9 +12,7 @@ export const REGEX = {
     FUNCTION_DATETIME: /^FUNC_date(\w+)?\(substr\((\{(\w|-)+:(\w|-|\.)+\}|\'(\w|-|:|\.)+\')(\d|\'|,|-)+\)\)/,
 };
 
-// Whitelisted operators. These operators are used in the where statement
-export const WHITELISTED_OPERATORS = ["<", "<=", ">", ">=", "=", "==", "!=", "<>", "IN", "NOT IN"];
-export const WHITELISTED_DIRECTIONS = [DIRECTIONS.DESC, DIRECTIONS.ASC];
+// export const WHITELISTED_DIRECTIONS = [DIRECTIONS.DESC, DIRECTIONS.ASC];
 
 // Default Exceptions and messages. This object is used to throw Exceptions
 export const EXCEPTIONS = {

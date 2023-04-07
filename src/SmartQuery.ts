@@ -1,5 +1,5 @@
 /**
- * Factory to generate smart queries used by smart store. Include validity checks of parameters.
+ * Query Factory to generate Smart Queries for Smart Store. Include validity checks of parameters.
  * For more complex queries, where calculations are involved do NOT usage this factory.
  *
  * Usage:
@@ -28,15 +28,16 @@
  */
 
 import {
-    OPERATORS,
-    DIRECTIONS,
     EXCEPTIONS,
     FUNC_STR,
     REGEX,
-    WHITELISTED_DIRECTIONS,
-    WHITELISTED_OPERATORS,
 } from "./SmartQueryConstants";
+
+import { LOG_OPERATORS } from "./enums/log-operators.enum";
+import { DIRECTIONS } from "./enums/directions.enum";
+
 import { _isValidExpression, _composeColumns, _composeTable, _composeCondition } from "./SmaryQueryHelpers";
+import { COMPARISONS } from "./enums/comparisons.enum";
 
 export class SmartQuery {
     // Private properties
@@ -118,8 +119,7 @@ export class SmartQuery {
             if (!_isValidExpression(leftExpression)) {
                 throw new Error(EXCEPTIONS.CHARACTERS_DIGITS_UNDERSCORE_DASH);
             }
-
-            if (!WHITELISTED_OPERATORS.includes(operator)) {
+            if (!Object.values(COMPARISONS).includes(operator)) {
                 throw new Error(EXCEPTIONS.WHITELISTED_OPERATORS);
             }
 
@@ -129,7 +129,7 @@ export class SmartQuery {
 
             this._where.push(
                 // @ts-ignore
-                this._whereObj(leftExpression, operator, rightExpression, OPERATORS.AND)
+                this._whereObj(leftExpression, operator, rightExpression, LOG_OPERATORS.AND)
             );
         }
 
@@ -142,7 +142,7 @@ export class SmartQuery {
             }
             this._where.push(
                 // @ts-ignore
-                this._whereObj(queryFactoryClosure, OPERATORS.AND)
+                this._whereObj(queryFactoryClosure, LOG_OPERATORS.AND)
             );
         }
 
@@ -164,7 +164,7 @@ export class SmartQuery {
 
         this._where.push(
             // @ts-ignore
-            this._whereObj(leftExpression, OPERATORS.IN, rightExpression, OPERATORS.AND)
+            this._whereObj(leftExpression, OPERATORS.IN, rightExpression, LOG_OPERATORS.AND)
         );
 
         return this;
@@ -189,7 +189,7 @@ export class SmartQuery {
 
         this._where.push(
             //@ts-ignore
-            this._whereObj(leftExpression, OPERATORS.IS, rightExpression, OPERATORS.AND)
+            this._whereObj(leftExpression, OPERATORS.IS, rightExpression, LOG_OPERATORS.AND)
         );
 
         return this;
@@ -217,7 +217,7 @@ export class SmartQuery {
                 throw new Error(EXCEPTIONS.CHARACTERS_DIGITS_UNDERSCORE_DASH);
             }
 
-            if (!WHITELISTED_OPERATORS.includes(operator)) {
+            if (!Object.values(COMPARISONS).includes(operator)) {
                 throw new Error(EXCEPTIONS.WHITELISTED_OPERATORS);
             }
 
@@ -226,7 +226,7 @@ export class SmartQuery {
             }
             this._where.push(
                 // @ts-ignore
-                this._whereObj(leftExpression, operator, rightExpression, OPERATORS.OR)
+                this._whereObj(leftExpression, operator, rightExpression, LOG_OPERATORS.OR)
             );
         }
 
@@ -239,7 +239,7 @@ export class SmartQuery {
             }
             this._where.push(
                 // @ts-ignore
-                this._whereObj(queryFactoryClosure, OPERATORS.OR)
+                this._whereObj(queryFactoryClosure, LOG_OPERATORS.OR)
             );
         }
 
@@ -261,7 +261,7 @@ export class SmartQuery {
 
         this._where.push(
             // @ts-ignore
-            this._whereObj(leftExpression, OPERATORS.IN, rightExpression, OPERATORS.OR)
+            this._whereObj(leftExpression, OPERATORS.IN, rightExpression, LOG_OPERATORS.OR)
         );
 
         return this;
@@ -286,7 +286,7 @@ export class SmartQuery {
 
         this._where.push(
             // @ts-ignore
-            this._whereObj(leftExpression, OPERATORS.IS, rightExpression, OPERATORS.OR)
+            this._whereObj(leftExpression, OPERATORS.IS, rightExpression, LOG_OPERATORS.OR)
         );
 
         return this;
@@ -307,7 +307,7 @@ export class SmartQuery {
             throw new Error(EXCEPTIONS.CHARACTERS_DIGITS_UNDERSCORE_DASH);
         }
 
-        if (direction !== undefined && !WHITELISTED_DIRECTIONS.includes(direction.toUpperCase())) {
+        if (direction !== undefined && !Object.values(DIRECTIONS).includes(direction.toUpperCase())) {
             throw new Error(EXCEPTIONS.WHITELISTED_DIRECTIONS);
         }
 

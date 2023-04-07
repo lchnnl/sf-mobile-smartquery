@@ -39,7 +39,7 @@ import { DIRECTIONS } from "./enums/directions.enum";
 import { _isValidExpression, _composeColumns, _composeTable, _composeCondition } from "./SmaryQueryHelpers";
 import { COMPARISONS } from "./enums/comparisons.enum";
 
-export class SmartQuery {
+class SmartQuery {
     // Private properties
     private _table: string = "";
     private _columns: string[] = [];
@@ -296,6 +296,8 @@ export class SmartQuery {
      * Adds a 'order by' condition
      * Column parameter is validated.
      * Direction can only be ASC or DESC
+     * usage: q.orderBy(column, direction)
+     * output: ORDER BY column direction
      * @param column
      * @param direction
      */
@@ -311,10 +313,10 @@ export class SmartQuery {
             throw new Error(EXCEPTIONS.WHITELISTED_DIRECTIONS);
         }
 
-        this._orderBy.push(
-            // @ts-ignorer
-            this._orderObj(column, direction === undefined ? DIRECTIONS.ASC : direction)
-        );
+        this._orderBy.push({
+            column,
+            direction: direction === undefined ? DIRECTIONS.ASC : direction
+        });
 
         return this;
     }
@@ -610,4 +612,10 @@ export class SmartQuery {
             };
         }
     }
+}
+
+export {
+    SmartQuery,
+    LOG_OPERATORS,
+    DIRECTIONS
 }

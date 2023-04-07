@@ -1,4 +1,4 @@
-import { SmartQuery } from "../SmartQuery";
+import { DIRECTIONS, SmartQuery } from "../SmartQuery";
 import { EXCEPTIONS } from "../SmartQueryConstants";
 
 describe("SmartQuery", () => {
@@ -151,6 +151,116 @@ describe("SmartQuery", () => {
             expect(() => {
                 q.where("name", "=", "test1 AND {table:id}=1");
             }).toThrowError(EXCEPTIONS.CHARACTERS_DIGITS_UNDERSCORE_DASH);
+        });
+    });
+
+    describe("query statement with group by condition", function () {
+        it("is correctly generated with one order by condition", function () {
+            // GIVEN
+            let q = new SmartQuery();
+            const columns = ["id"];
+            const table = "table";
+
+            // WHEN
+            q.select(columns);
+            q.from(table);
+            //@ts-ignore
+            q.orderBy("id", DIRECTIONS.ASC);
+
+            // THEN
+            const expected = `SELECT {table:id} FROM {table} ORDER BY {table:id} ASC`;
+            expect(q.run()).toBe(expected);
+        });
+
+        it("is correctly generated with multiple order by condition", function () {
+            // GIVEN
+            let q = new SmartQuery();
+            const columns = ["id", "id2", "id3"];
+            const table = "table";
+
+            // WHEN
+            q.select(columns);
+            q.from(table);
+            //@ts-ignore
+            q.orderBy("id", DIRECTIONS.ASC);
+            //@ts-ignore
+            q.orderBy("id2", DIRECTIONS.DESC);
+            //@ts-ignore
+            q.orderBy("id3", DIRECTIONS.ASC);
+
+            // THEN
+            const expected = `SELECT {table:id},{table:id2},{table:id3} FROM {table} ORDER BY {table:id} ASC,{table:id2} DESC,{table:id3} ASC`;
+            expect(q.run()).toBe(expected);
+        });
+
+        it("is correctly generated with where and order by condition", function () {
+            // GIVEN
+            let q = new SmartQuery();
+            const columns = ["id", "id2", "id3"];
+            const table = "table";
+
+            // WHEN
+            q.select(columns);
+            q.from(table);
+            q.where("id2", "=", "2")
+            //@ts-ignore
+            q.orderBy("id", DIRECTIONS.ASC);
+
+            // THEN
+            const expected = `SELECT {table:id},{table:id2},{table:id3} FROM {table} WHERE {table:id2} = 2 ORDER BY {table:id} ASC`;
+            expect(q.run()).toBe(expected);
+        });
+    });
+
+        describe("query statement with group by condition", function () {
+        it("is correctly generated with one group by condition", function () {
+            // GIVEN
+            let q = new SmartQuery();
+            const columns = ["id"];
+            const table = "table";
+
+            // WHEN
+            q.select(columns);
+            q.from(table);
+            q.groupBy("id");
+
+            // THEN
+            const expected = `SELECT {table:id} FROM {table} GROUP BY {table:id}`;
+            expect(q.run()).toBe(expected);
+        });
+
+        it("is correctly generated with multiple group by conditions", function () {
+            // GIVEN
+            let q = new SmartQuery();
+            const columns = ["id", "id2", "id3"];
+            const table = "table";
+
+            // WHEN
+            q.select(columns);
+            q.from(table);
+            q.groupBy("id");
+            q.groupBy("id2");
+
+            // THEN
+            const expected = `SELECT {table:id},{table:id2},{table:id3} FROM {table} GROUP BY {table:id},{table:id2}`;
+            expect(q.run()).toBe(expected);
+        });
+
+        it("is correctly generated with where and order by condition", function () {
+            // GIVEN
+            let q = new SmartQuery();
+            const columns = ["id", "id2", "id3"];
+            const table = "table";
+
+            // WHEN
+            q.select(columns);
+            q.from(table);
+            q.where("id2", "=", "2")
+            q.groupBy("id2");
+
+            // THEN
+            const expected = `SELECT {table:id},{table:id2},{table:id3} FROM {table} WHERE {table:id2} = 2 GROUP BY {table:id2}`;
+            expect(q.run()).toBe(expected);
         });
     });
 });

@@ -63,6 +63,7 @@ describe("SmartQuery", () => {
 
             // THEN
             const expected = "SELECT {table:id} FROM {table} WHERE {table:id} = 1";
+            console.log(q.run());
             expect(q.run()).toBe(expected);
         });
 
@@ -71,9 +72,8 @@ describe("SmartQuery", () => {
             let q = new SmartQuery();
             const columns = ["id", "name"];
             const table = "table";
-            const where =
-                // WHEN
-                q.select(columns);
+            // WHEN
+            q.select(columns);
             q.from(table);
             q.where("name", "=", "test1");
             q.where("name", "=", "test2");

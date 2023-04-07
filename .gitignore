@@ -8,10 +8,9 @@
 .history
 .sfdx
 
-node_modules/
-
 npm-debug.*
-
-lib
-
 yarn-error.log
+
+node_modules
+lib
+coverage

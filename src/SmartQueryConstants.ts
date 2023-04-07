@@ -1,6 +1,3 @@
-
-import { DIRECTIONS } from "./enums/directions.enum";
-
 // Regex to validate to validate inputs
 export const REGEX = {
     DIGITS: /^\d+$/,
@@ -11,8 +8,6 @@ export const REGEX = {
     FUNCTION_DATE: /^FUNC_\w+\((\{\w+:\w+\}|[a-zA-Z]+\((\d|\'|,|-)+\))\)$/,
     FUNCTION_DATETIME: /^FUNC_date(\w+)?\(substr\((\{(\w|-)+:(\w|-|\.)+\}|\'(\w|-|:|\.)+\')(\d|\'|,|-)+\)\)/,
 };
-
-// export const WHITELISTED_DIRECTIONS = [DIRECTIONS.DESC, DIRECTIONS.ASC];
 
 // Default Exceptions and messages. This object is used to throw Exceptions
 export const EXCEPTIONS = {
